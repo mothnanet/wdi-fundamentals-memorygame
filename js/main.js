@@ -35,9 +35,12 @@ var checkForMatch = function() {
 }
 
 // code for flipping the card and storing volue
-var flipCard = function (cardID) {
+var flipCard = function () {
+    cardId = this.getAttribute("data-id");
+    console.log(cardId)
 
     cardsInPlay.push(cards[cardId]);
+    this.setAttribute("src", cards[cardId].cardImage);
     console.log("User flipped " + cards[cardId]).rank;
     console.log(cards[cardId].cardImage);
     console.log(cards[cardId].suit);
@@ -47,6 +50,23 @@ var flipCard = function (cardID) {
             checkForMatch();
         }
 }
+
+var createBoard = function() {
+  for (var i = 0; i < cards.length; i++)
+  var cardElement = document.createElement("img");
+      cardElement.setAttribute("src", "images/back.png")
+      cardElement.setAttribute("data-id", i);
+      cardElement.addEventListener("click", flipCard);
+   document.getElementById("game-board").appendChild(cardElement);
+
+ }
+
+}
+
+createBoard();
+};
+
+
 
 flipCard(0);
 flipCard(2);
